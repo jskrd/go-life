@@ -1,0 +1,13 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "make build"
+bin = "./bin/web"
+include_ext = ["go", "html"]
+exclude_regex = ["_test.go"]
+
+[proxy]
+enabled = true
+app_port = 8080
+proxy_port = 7331

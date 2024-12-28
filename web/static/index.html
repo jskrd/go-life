@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="An implementation of Conway's Game of Life in Go and WebAssembly">
+		<title>Conway's Game of Life</title>
+		<style>
+			body {
+				margin: 0;
+				background-color: black;
+			}
+
+			canvas {
+				display: block;
+				background-color: black;
+			}
+		</style>
+    <script src="wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(fetch("app.wasm"), go.importObject)
+        .then((result) => {
+          go.run(result.instance);
+        });
+    </script>
+	</head>
+	<body>
+		<canvas id="app"></canvas>
+	</body>
+</html>
